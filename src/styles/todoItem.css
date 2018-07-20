@@ -1,0 +1,8 @@
+.todo-item-container {
+    background-color: antiquewhite;
+    height: 5vh;
+}
+
+.todo-item-container span, button {
+    margin: 15px;
+}

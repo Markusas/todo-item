@@ -1,0 +1,1 @@
+export const Status = ["OPEN", "DONE", "POSTPONED", "IN_PROGRESS"];
