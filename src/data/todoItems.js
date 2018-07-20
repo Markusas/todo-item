@@ -3,7 +3,7 @@ export const todoItems = [
         "id" : 1,
         "title": "Write email",
         "description": "send invitation to Barbara",
-        "status": "OPEN",
+        "status": "DONE",
         "priority": "LOW"
     },
     {
