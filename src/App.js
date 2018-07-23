@@ -1,10 +1,11 @@
+// @flow
 import React, { Component } from 'react';
 import './App.css';
 import { MainLayout } from './components/layouts/MainLayout';
 import { StatisticsLayout } from "./components/layouts/StatisticsLayout";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-class App extends Component {
+class App extends Component<{}> {
   render() {
     return (
       <Router>

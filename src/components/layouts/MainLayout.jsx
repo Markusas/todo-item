@@ -1,10 +1,11 @@
+// @flow
 import * as React from "react";
 import { Header } from "../Header";
 import { NewTodoItem } from "../NewTodoItem/NewTodoItem";
 import { todoItems } from "../../data/todoItems";
 import { TodoItemContainer } from "../TodoItem/TodoItemContainer";
 
-export class MainLayout extends React.Component{
+export class MainLayout extends React.Component<{}>{
     render(){
         return(
             <div>

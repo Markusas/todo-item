@@ -1,8 +1,9 @@
+// @flow
 import * as React from "react";
 import {Pie} from 'react-chartjs-2';
 import { data } from "../../utils/graphicUtil";
 
-export class Graphic extends React.Component{
+export class Graphic extends React.Component<{}>{
   render() {
     return (
       <div>

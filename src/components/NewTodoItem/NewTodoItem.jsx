@@ -1,7 +1,12 @@
+// @flow
 import * as React from "react";
 import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 
-export class NewTodoItem extends React.Component {
+type NewTodoItemState = {
+    isOpen: boolean
+};
+
+export class NewTodoItem extends React.Component<{}, NewTodoItemState> {
     state = {
         isOpen: false
     };
@@ -12,7 +17,7 @@ export class NewTodoItem extends React.Component {
                 {
                     this.state.isOpen
                     ? <TodoItemForm
-                    todoItem={this.props.todoItem}
+                    //todoItem={this.props.todoItem}
                     onUpdate={newItem => 
                         console.log("Added new item: ", newItem)}/>
                     : ""
