@@ -53,6 +53,12 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
         const newItems = [...this.state.todoItems, newItem];
         this.setState({...this.state, todoItems: newItems});
     }
+
+    async handleRemove(id: TodoItemId) {
+        await this.props.todoItemService.remove(id);
+        const newItems = this.state.todoItems.filter(x => x.id !== id);
+        this.setState({...this.state, todoItems: newItems});
+    }
     render(){
         console.log("Rendering");
         if (this.state.isLoading) {
@@ -71,6 +77,7 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
                         onFullDataRequest={() => this.props.todoItemService.getSingle(x)}
                         todoItem={x}
                         onItemUpdate={newData => this.handleUpdate(x.id, newData)}
+                        onItemRemove={() => this.handleRemove(x.id)}
                     />
                     </div>)
                 }

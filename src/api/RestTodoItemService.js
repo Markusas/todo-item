@@ -38,4 +38,12 @@ export class RestTodoItemService implements TodoItemService {
         }
         return data.value;
     }
+
+    async remove(id: TodoItemId): Promise<void> {
+        const data: ApiResponse<void> = await fetchData("DELETE", buildUrl(`/tasks/${id}`));
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }

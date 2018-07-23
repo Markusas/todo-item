@@ -11,7 +11,8 @@ import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 type TodoItemContainerProps = {
     todoItem: TodoItemRef,
     onFullDataRequest: () => Promise<TodoItem>,
-    onItemUpdate: (data: TodoItem) => mixed
+    onItemUpdate: (data: TodoItem) => mixed,
+    onItemRemove: () => mixed
 };
 
 type TodoItemContainerState = {
@@ -30,7 +31,7 @@ export class TodoItemContainer extends React.Component<TodoItemContainerProps, T
                     <TodoItemTitle title={this.props.todoItem.title}/>
                     <StatusInput status={this.props.todoItem.status}/>
                     <EditTodoItem onEdit={() => this.setState({isOpen: !this.state.isOpen})}/>
-                    <RemoveTodoItem onRemove={() => console.log("Deleting task with id: ", this.props.todoItem.id)}/>
+                    <RemoveTodoItem onRemove={this.props.onItemRemove}/>
                 </div>
                 {
                     this.state.isOpen

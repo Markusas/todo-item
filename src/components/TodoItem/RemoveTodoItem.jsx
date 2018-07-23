@@ -2,7 +2,7 @@
 import * as React from "react";
 
 type RemoveTodoItemProps = {
-    onRemove: () => void
+    onRemove: () => mixed
 };
 
 export class RemoveTodoItem extends React.Component<RemoveTodoItemProps> {
