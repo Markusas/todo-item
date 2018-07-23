@@ -7,7 +7,7 @@ import { Loader } from "../Loader";
 type TodoItemFormProps = {
     onUpdate: (item: TodoItem) => mixed,
     todoItemRef?: TodoItemRef,
-    onFullDataRequest: () => Promise<TodoItem>;
+    onFullDataRequest?: () => Promise<TodoItem>;
 };
 
 type TodoItemFormState = {
@@ -20,9 +20,13 @@ export class TodoItemForm extends React.Component<TodoItemFormProps, TodoItemFor
         isLoading: true
     }
     async componentDidMount() {
-        const data = await this.props.onFullDataRequest();
-        await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
-        this.setState({isLoading: false, todoItem: data});
+        if (this.props.onFullDataRequest !== undefined) {
+            const data = await this.props.onFullDataRequest();
+            await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+            this.setState({isLoading: false, todoItem: data});
+        } else {
+            this.setState({...this.state, isLoading: false});
+        }
     }
     handleSubmit(e: any) {
         e.preventDefault();

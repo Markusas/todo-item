@@ -38,7 +38,19 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
         const oldItem = this.state.todoItems.filter(item => item.id === id)[0];
         const newItem = {...oldItem, ...payload};
         const newItems = this.state.todoItems.map(item => item.id === id ? newItem : item);
-        console.log(newItems);
+        this.setState({...this.state, todoItems: newItems});
+    }
+
+    async handleInsert(data: TodoItem) {
+        const payload = {
+            title: data.title,
+            description: data.description,
+            status: data.status,
+            priority: data.priority
+        };
+        const response = await this.props.todoItemService.add(payload);
+        const newItem = {...data, ...response};
+        const newItems = [...this.state.todoItems, newItem];
         this.setState({...this.state, todoItems: newItems});
     }
     render(){
@@ -51,7 +63,7 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
         return(
             <div>
                 <Header />
-                <NewTodoItem todoItem={{}}/>
+                <NewTodoItem onInsert={data => this.handleInsert(data)}/>
                 {
                 this.state.todoItems.map((x,i) => 
                     <div key={i}>

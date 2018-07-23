@@ -2,11 +2,15 @@
 import * as React from "react";
 import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 
+type NewTodoItemProps = {
+    onInsert: (data: TodoItem) => mixed
+};
+
 type NewTodoItemState = {
     isOpen: boolean
 };
 
-export class NewTodoItem extends React.Component<{}, NewTodoItemState> {
+export class NewTodoItem extends React.Component<NewTodoItemProps, NewTodoItemState> {
     state = {
         isOpen: false
     };
@@ -17,9 +21,7 @@ export class NewTodoItem extends React.Component<{}, NewTodoItemState> {
                 {
                     this.state.isOpen
                     ? <TodoItemForm
-                    //todoItem={this.props.todoItem}
-                    onUpdate={newItem => 
-                        console.log("Added new item: ", newItem)}/>
+                    onUpdate={this.props.onInsert}/>
                     : ""
                 } 
             </div>

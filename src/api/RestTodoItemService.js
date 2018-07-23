@@ -30,4 +30,12 @@ export class RestTodoItemService implements TodoItemService {
         }
         return data.value;
     }
+
+    async add(item: AddTodoItemRequest): Promise<AddTodoItemResponse> {
+        const data: ApiResponse<AddTodoItemResponse> = await fetchData("POST", buildUrl(`/tasks`), item);
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }
