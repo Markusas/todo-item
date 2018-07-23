@@ -9,7 +9,8 @@ import { RemoveTodoItem } from "./RemoveTodoItem";
 import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 
 type TodoItemContainerProps = {
-    todoItem: TodoItemRef
+    todoItem: TodoItemRef,
+    onFullDataRequest: () => Promise<TodoItem>
 };
 
 type TodoItemContainerState = {
@@ -33,7 +34,11 @@ export class TodoItemContainer extends React.Component<TodoItemContainerProps, T
                 {
                     this.state.isOpen
                     ? <div>
-                        <TodoItemForm onUpdate={newData => console.log("Updated: ", newData)} todoItem={this.props.todoItem}/>
+                        <TodoItemForm
+                            onUpdate={newData => console.log("Updated: ", newData)}
+                            todoItemRef={this.props.todoItem}
+                            onFullDataRequest={this.props.onFullDataRequest}
+                        />
                     </div>
                     : ""
                 }
