@@ -10,7 +10,8 @@ import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 
 type TodoItemContainerProps = {
     todoItem: TodoItemRef,
-    onFullDataRequest: () => Promise<TodoItem>
+    onFullDataRequest: () => Promise<TodoItem>,
+    onItemUpdate: (data: TodoItem) => void
 };
 
 type TodoItemContainerState = {
@@ -35,7 +36,7 @@ export class TodoItemContainer extends React.Component<TodoItemContainerProps, T
                     this.state.isOpen
                     ? <div>
                         <TodoItemForm
-                            onUpdate={newData => console.log("Updated: ", newData)}
+                            onUpdate={newData => this.props.onItemUpdate(newData)}
                             todoItemRef={this.props.todoItem}
                             onFullDataRequest={this.props.onFullDataRequest}
                         />

@@ -14,7 +14,10 @@ export class Loader extends React.Component<{}, LoaderState> {
     intervalId: IntervalId;
 
     componentDidMount() {
-        this.intervalId = setInterval(() => this.setState({currentFrame: (this.state.currentFrame+1)%frames.length}), 50);
+        this.intervalId = setInterval(
+            () => this.setState({currentFrame: (this.state.currentFrame+1)%frames.length}),
+            75
+        );
     }
     componentWillUnmount() {
         clearInterval(this.intervalId);

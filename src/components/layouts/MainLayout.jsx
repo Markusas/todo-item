@@ -27,6 +27,15 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, todoItems: data});
     }
+    async handleUpdate(id: TodoItemId, newData: TodoItem) {
+        const payload = {
+            title: newData.title,
+            description: newData.description,
+            status: newData.status,
+            priority: newData.priority
+        };
+        const response = await this.props.todoItemService.update(id, payload);
+    }
     render(){
         if (this.state.isLoading) {
             return (
@@ -43,6 +52,7 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
                     <TodoItemContainer
                         onFullDataRequest={() => this.props.todoItemService.getSingle(x)}
                         todoItem={x}
+                        onItemUpdate={newData => this.handleUpdate(x.id, newData)}
                     />
                     </div>)
                 }
