@@ -12,7 +12,8 @@ type TodoItemContainerProps = {
     todoItem: TodoItemRef,
     onFullDataRequest: () => Promise<TodoItem>,
     onItemUpdate: (data: TodoItem) => mixed,
-    onItemRemove: () => mixed
+    onItemRemove: () => mixed,
+    onStatusUpdate: (newStatus: TodoItemStatus) => mixed
 };
 
 type TodoItemContainerState = {
@@ -29,7 +30,7 @@ export class TodoItemContainer extends React.Component<TodoItemContainerProps, T
                 <div className="todo-item-container">
                     <PriorityBadge priority={this.props.todoItem.priority}/>
                     <TodoItemTitle title={this.props.todoItem.title}/>
-                    <StatusInput status={this.props.todoItem.status}/>
+                    <StatusInput status={this.props.todoItem.status} onChange={this.props.onStatusUpdate}/>
                     <EditTodoItem onEdit={() => this.setState({isOpen: !this.state.isOpen})}/>
                     <RemoveTodoItem onRemove={this.props.onItemRemove}/>
                 </div>

@@ -46,4 +46,12 @@ export class RestTodoItemService implements TodoItemService {
         }
         return data.value;
     }
+
+    async updateStatus(id: TodoItemId, status: TodoItemStatus): Promise<void> {
+        const data: ApiResponse<void> = await fetchData("PATCH", buildUrl(`/tasks/${id}/${status}`));
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }
