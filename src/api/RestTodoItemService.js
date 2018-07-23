@@ -22,4 +22,12 @@ export class RestTodoItemService implements TodoItemService {
         }
         return data.value;
     }
+
+    async update(id: TodoItemId, payload: UpdateTodoItemRequest): Promise<void> {
+        const data: ApiResponse<void> = await fetchData("PUT", buildUrl(`/tasks/${id}`), payload);
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }

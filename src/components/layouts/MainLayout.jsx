@@ -34,9 +34,15 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
             status: newData.status,
             priority: newData.priority
         };
-        const response = await this.props.todoItemService.update(id, payload);
+        await this.props.todoItemService.update(id, payload);
+        const oldItem = this.state.todoItems.filter(item => item.id === id)[0];
+        const newItem = {...oldItem, ...payload};
+        const newItems = this.state.todoItems.map(item => item.id === id ? newItem : item);
+        console.log(newItems);
+        this.setState({...this.state, todoItems: newItems});
     }
     render(){
+        console.log("Rendering");
         if (this.state.isLoading) {
             return (
                 <Loader/>

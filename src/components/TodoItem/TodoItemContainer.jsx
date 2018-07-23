@@ -11,7 +11,7 @@ import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 type TodoItemContainerProps = {
     todoItem: TodoItemRef,
     onFullDataRequest: () => Promise<TodoItem>,
-    onItemUpdate: (data: TodoItem) => void
+    onItemUpdate: (data: TodoItem) => mixed
 };
 
 type TodoItemContainerState = {

@@ -15,7 +15,13 @@ export const fetchData =
             headers: new Headers(headers)
         };
         return fetch(url, config)
-                .then(r => r.json())
+                .then(r => r.text())
+                .then(r => {
+                    if (r.length === 0) {
+                        return (("": any): K);
+                    }
+                    return ((JSON.parse(r): any): K);
+                })
                 .then(r => ({
                     isError: false,
                     value: r

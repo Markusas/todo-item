@@ -5,7 +5,7 @@ import { StatusInput } from "../TodoItem/StatusInput";
 import { Loader } from "../Loader";
 
 type TodoItemFormProps = {
-    onUpdate: (item: TodoItem) => void,
+    onUpdate: (item: TodoItem) => mixed,
     todoItemRef?: TodoItemRef,
     onFullDataRequest: () => Promise<TodoItem>;
 };
