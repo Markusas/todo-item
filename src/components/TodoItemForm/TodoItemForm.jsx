@@ -1,12 +1,18 @@
+// @flow
 import * as React from "react";
 import * as todoItem from "../../data/todoItem";
-import { TodoItemStatus } from "../TodoItem/TodoItemStatus";
+import { StatusInput } from "../TodoItem/StatusInput";
 
-export class TodoItemForm extends React.Component{
-    handleSubmit(e) {
+type TodoItemFormProps = {
+    onUpdate: (item: TodoItem) => void,
+    todoItem?: TodoItemRef
+};
+
+export class TodoItemForm extends React.Component<TodoItemFormProps>{
+    handleSubmit(e: any) {
         e.preventDefault();
         const newData = {
-            id: this.props.todoItem.id,
+            id: this.props.todoItem !== undefined ? this.props.todoItem.id : 0, // TODO: fix this
             title: e.target.title.value,
             description: e.target.description.value,
             priority: e.target.priority.value,
@@ -22,9 +28,9 @@ export class TodoItemForm extends React.Component{
                 <br/>
                 Description: <input type="text" name="description" defaultValue={this.props.todoItem.description}/>
                 <br/>
-                Status: <TodoItemStatus status={this.props.todoItem.status}/>
+                Status: <StatusInput status={this.props.todoItem.status}/>
                 <br/>
-                Priority: <select name="priority" defaultValue={this.props.priority}>
+                Priority: <select name="priority" defaultValue={this.props.todoItem.priority}>
                 {
                     todoItem.Priority.map((x,i) =>
                     <option key={i} value={x}>{x}</option>)

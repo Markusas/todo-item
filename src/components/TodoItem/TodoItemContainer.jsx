@@ -1,13 +1,22 @@
+// @flow
 import * as React from "react";
 import "../../styles/todoItem.css";
-import { TodoItemPriority } from "./TodoItemPriority";
+import { PriorityBadge } from "./PriorityBadge";
 import { TodoItemTitle } from "./TodoItemTitle";
-import { TodoItemStatus } from "./TodoItemStatus";
+import { StatusInput } from "./StatusInput";
 import { EditTodoItem } from "./EditTodoItem";
 import { RemoveTodoItem } from "./RemoveTodoItem";
 import { TodoItemForm } from "../TodoItemForm/TodoItemForm";
 
-export class TodoItemContainer extends React.Component {
+type TodoItemContainerProps = {
+    todoItem: TodoItemRef
+};
+
+type TodoItemContainerState = {
+    isOpen: boolean
+};
+
+export class TodoItemContainer extends React.Component<TodoItemContainerProps, TodoItemContainerState> {
     state = {
         isOpen: false
     };
@@ -15,9 +24,9 @@ export class TodoItemContainer extends React.Component {
         return(
             <div>
                 <div className="todo-item-container">
-                    <TodoItemPriority priority={this.props.todoItem.priority}/>
+                    <PriorityBadge priority={this.props.todoItem.priority}/>
                     <TodoItemTitle title={this.props.todoItem.title}/>
-                    <TodoItemStatus status={this.props.todoItem.status}/>
+                    <StatusInput status={this.props.todoItem.status}/>
                     <EditTodoItem onEdit={() => this.setState({isOpen: !this.state.isOpen})}/>
                     <RemoveTodoItem onRemove={() => console.log("Deleting task with id: ", this.props.todoItem.id)}/>
                 </div>
