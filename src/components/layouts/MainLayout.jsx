@@ -68,7 +68,6 @@ export class MainLayout extends React.Component<MainLayoutProps, MainLayoutState
         this.setState({...this.state, todoItems: newItems});
     }
     render(){
-        console.log("Rendering");
         if (this.state.isLoading) {
             return (
                 <Loader/>

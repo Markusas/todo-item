@@ -14,7 +14,7 @@ class App extends Component<{}> {
       <Router>
         <div>
           <Route exact path="/" component={() => <MainLayout todoItemService={SERVICE} />}/>
-          <Route path="/statistics" component={StatisticsLayout}/>
+          <Route path="/statistics" component={() => <StatisticsLayout todoItemService={SERVICE} />}/>
         </div>
       </Router>
     );
